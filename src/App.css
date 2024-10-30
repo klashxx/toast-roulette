@@ -1,0 +1,65 @@
+/* src/App.css */
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background-color: #fff3e0;
+  text-align: center;
+}
+
+.app {
+  padding: 20px;
+}
+
+h1 {
+  color: #ff6f00;
+}
+
+.ingredient-input,
+.controls,
+.roulette-wheel {
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+input[type='text'],
+input[type='number'] {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #ff9800;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #ff9800;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #e65100;
+}
+
+.selected-ingredients ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.selected-ingredients li {
+  background-color: #ffe0b2;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+@media (max-width: 600px) {
+  input[type='text'],
+  input[type='number'],
+  button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
