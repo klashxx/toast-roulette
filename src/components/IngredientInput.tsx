@@ -1,32 +1,44 @@
 // src/components/IngredientInput.tsx
 import React, { useState } from 'react';
 
-interface IngredientInputProps {
-  setIngredients: React.Dispatch<React.SetStateAction<string[]>>;
+interface Ingredient {
+  name: string;
+  emoji: string;
 }
 
-const defaultIngredients = [
-  'Tomato',
-  'Avocado',
-  'Butter',
-  'Spanish Jam',
-  'Tuna',
-  'Cheese',
-  'Garlic Spicy Sauce',
-  'Spanish Omelette',
-  'Sobrasada',
+interface IngredientInputProps {
+  setIngredients: React.Dispatch<React.SetStateAction<Ingredient[]>>;
+}
+
+const defaultIngredients: Ingredient[] = [
+  { name: 'Avocado', emoji: '🥑' },
+  { name: 'Ham', emoji: '🥩' },
+  { name: 'Tuna', emoji: '🐟' },
+  { name: 'Cheese', emoji: '🧀' },
+  { name: 'Garlic Spicy', emoji: '🌶️' },
+  { name: 'Omelette', emoji: '🥘' },
+  { name: 'Sobrasada', emoji: '🍖' },
+  { name: 'Jam', emoji: '🥫' },
 ];
 
 const IngredientInput: React.FC<IngredientInputProps> = ({ setIngredients }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputName, setInputName] = useState('');
+  const [inputEmoji, setInputEmoji] = useState('');
 
   const handleAddIngredient = () => {
-    if (inputValue.trim()) {
-      setIngredients((prev) => [...prev, inputValue.trim()]);
-      setInputValue('');
+    if (inputName.trim()) {
+      setIngredients((prev) => [
+        ...prev,
+        { 
+          name: inputName.trim(), 
+          emoji: inputEmoji.trim() || '🍞'
+        },
+      ]);
+      setInputName('');
+      setInputEmoji('');
     }
   };
-
+  
   const handleUseDefault = () => {
     setIngredients(defaultIngredients);
   };
@@ -36,12 +48,18 @@ const IngredientInput: React.FC<IngredientInputProps> = ({ setIngredients }) => 
       <h2>Choose Your Ingredients</h2>
       <input
         type="text"
-        value={inputValue}
-        placeholder="Add an ingredient"
-        onChange={(e) => setInputValue(e.target.value)}
+        value={inputEmoji}
+        placeholder="Emoji"
+        onChange={(e) => setInputEmoji(e.target.value)}
       />
-      <button onClick={handleAddIngredient}>Add Ingredient</button>
-      <button onClick={handleUseDefault}>Use Default Ingredients</button>
+      <input
+        type="text"
+        value={inputName}
+        placeholder="Add an ingredient"
+        onChange={(e) => setInputName(e.target.value)}
+      />
+      <button onClick={handleAddIngredient}>Add Toping</button>
+      <button onClick={handleUseDefault}>Use Default Topings</button>
     </div>
   );
 };

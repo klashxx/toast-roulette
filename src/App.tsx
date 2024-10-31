@@ -4,13 +4,20 @@ import IngredientInput from './components/IngredientInput';
 import RouletteWheel from './components/RouletteWheel';
 import './App.css';
 
+
+interface Ingredient {
+  name: string;
+  emoji: string;
+}
+
+
 const App: React.FC = () => {
-  const [ingredients, setIngredients] = useState<string[]>([]);
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [spins, setSpins] = useState<number>(1);
 
   return (
     <div className="app">
-      <h1>Toast Ingredient Roulette</h1>
+      <h1>🍞 Gazquez Toast Maker 🍞</h1>
       <IngredientInput setIngredients={setIngredients} />
       <div className="controls">
         <label htmlFor="spins">Number of Ingredients:</label>
