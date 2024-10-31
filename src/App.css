@@ -1,4 +1,4 @@
-/* Reset some default browser styles */
+/* Reset default browser styles */
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +26,15 @@ h1 {
   font-size: 2.2em;
   color: #ff6f00;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1::before,
+h1::after {
+  content: '🍞';
+  margin: 0 10px;
 }
 
 /* Ingredient Input Component */
@@ -66,11 +75,33 @@ h1 {
   cursor: pointer;
   border-radius: 5px;
   margin-top: 10px;
-  margin-right: 10px;
   transition: background-color 0.3s;
 }
 
 .ingredient-input button:hover {
+  background-color: #e65100;
+}
+
+/* Default Toppings Button Styling */
+.default-button {
+  padding: 10px 20px;
+  background-color: #ff9800;
+  border: none;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: background-color 0.3s, border 0.3s;
+}
+
+.default-button.pressed {
+  background-color: #ffb74d; /* Change color to indicate pressed state */
+  border: 2px solid #ff9800;
+  font-weight: bold;
+}
+
+.default-button:hover {
   background-color: #e65100;
 }
 
@@ -95,6 +126,22 @@ h1 {
   border: 2px solid #ff9800;
   border-radius: 5px;
   text-align: center;
+}
+
+.controls button {
+  margin-left: 10px; /* Spacing for Start Roulette button */
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.controls button:hover {
+  background-color: #e65100;
 }
 
 /* Roulette Wheel */
@@ -122,6 +169,23 @@ h1 {
 
 .roulette-wheel button:hover {
   background-color: #e65100;
+}
+
+/* Reset Button Styling */
+.reset-button {
+  padding: 10px 30px;
+  font-size: 1.2em;
+  background-color: #d32f2f;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.reset-button:hover {
+  background-color: #b71c1c;
 }
 
 /* Selected Ingredients */
@@ -183,7 +247,8 @@ h1 {
     height: 250px;
   }
 
-  .roulette-wheel button {
+  .roulette-wheel button,
+  .reset-button {
     font-size: 1em;
     padding: 10px 20px;
   }

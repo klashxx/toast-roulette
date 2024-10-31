@@ -1,4 +1,3 @@
-// src/components/IngredientInput.tsx
 import React, { useState } from 'react';
 
 interface Ingredient {
@@ -11,19 +10,20 @@ interface IngredientInputProps {
 }
 
 const defaultIngredients: Ingredient[] = [
-  { name: 'Avocado', emoji: '🥑' },
-  { name: 'Ham', emoji: '🥩' },
-  { name: 'Tuna', emoji: '🐟' },
-  { name: 'Cheese', emoji: '🧀' },
-  { name: 'Garlic Spicy', emoji: '🌶️' },
-  { name: 'Omelette', emoji: '🥘' },
-  { name: 'Sobrasada', emoji: '🍖' },
-  { name: 'Jam', emoji: '🥫' },
-];
+    { name: 'Avocado', emoji: '🥑' },
+    { name: 'Ham', emoji: '🥩' },
+    { name: 'Tuna', emoji: '🐟' },
+    { name: 'Cheese', emoji: '🧀' },
+    { name: 'Garlic Spicy', emoji: '🌶️' },
+    { name: 'Omelette', emoji: '🥘' },
+    { name: 'Sobrasada', emoji: '🍖' },
+    { name: 'Jam', emoji: '🥫' },
+  ];
 
 const IngredientInput: React.FC<IngredientInputProps> = ({ setIngredients }) => {
   const [inputName, setInputName] = useState('');
   const [inputEmoji, setInputEmoji] = useState('');
+  const [isDefaultPressed, setIsDefaultPressed] = useState(false); // Track default button press
 
   const handleAddIngredient = () => {
     if (inputName.trim()) {
@@ -31,16 +31,18 @@ const IngredientInput: React.FC<IngredientInputProps> = ({ setIngredients }) => 
         ...prev,
         { 
           name: inputName.trim(), 
-          emoji: inputEmoji.trim() || '🍞'
+          emoji: inputEmoji.trim() || '🍞' // Default to 🍞 if no emoji is provided
         },
       ]);
       setInputName('');
       setInputEmoji('');
+      setIsDefaultPressed(false); // Reset the default button state if user adds custom ingredients
     }
   };
-  
+
   const handleUseDefault = () => {
     setIngredients(defaultIngredients);
+    setIsDefaultPressed(true); // Set default button as pressed
   };
 
   return (
@@ -58,8 +60,13 @@ const IngredientInput: React.FC<IngredientInputProps> = ({ setIngredients }) => 
         placeholder="Add an ingredient"
         onChange={(e) => setInputName(e.target.value)}
       />
-      <button onClick={handleAddIngredient}>Add Toping</button>
-      <button onClick={handleUseDefault}>Use Default Topings</button>
+      <button onClick={handleAddIngredient}>Add Ingredient</button>
+      <button 
+        onClick={handleUseDefault}
+        className={isDefaultPressed ? "default-button pressed" : "default-button"}
+      >
+        Use Default Toppings
+      </button>
     </div>
   );
 };

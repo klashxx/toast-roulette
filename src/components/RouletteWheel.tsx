@@ -1,4 +1,3 @@
-// src/components/RouletteWheel.tsx
 import React, { useState, useEffect } from 'react';
 import { Wheel } from 'react-custom-roulette';
 
